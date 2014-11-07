@@ -11,12 +11,13 @@ describe DomainInterceptor do
     let(:message) { double(:message) }
 
     before do
-      allow(message).to receive(:to) { [destination_address] }
+      allow(message).to receive(:to) { [destination_address_1, destination_address_2] }
       allow(message).to receive(:to=)
     end
 
-    context "when the given email matches any of the domains given" do
-      let(:destination_address) { "noah@hotmail.com" }
+    context "when the given email matches all of the domains given" do
+      let(:destination_address_1) { "noah@hotmail.com" }
+      let(:destination_address_2) { "joe@hotmail.com" }
 
       it "does not manipulate the destination of the given email" do
         interceptor.delivering_email(message)
@@ -24,8 +25,9 @@ describe DomainInterceptor do
       end
     end
 
-    context "when the given email does not match any of the domains given" do
-      let(:destination_address) { "noah@gmail.com" }
+    context "when the given email does not match one of the domains given" do
+      let(:destination_address_1) { "noah@gmail.com" }
+      let(:destination_address_2) { "noah@hotmail.com" }
 
       it "changes the destination of the given email to the default recipient" do
         interceptor.delivering_email(message)

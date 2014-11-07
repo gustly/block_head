@@ -13,7 +13,7 @@ class DomainInterceptor
   private
 
   def destination_has_valid_domain?(message)
-    message.to.any? do |recipient|
+    message.to.all? do |recipient|
       recipient_domain = recipient.split("@")[1]
       domains.include?(recipient_domain)
     end
