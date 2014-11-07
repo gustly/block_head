@@ -1,4 +1,5 @@
 require 'block_head/version'
+require 'mail'
 
 class DomainInterceptor
   def initialize(domains, default_recipient)

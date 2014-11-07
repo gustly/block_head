@@ -4,6 +4,8 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'block_head/version'
 
 Gem::Specification.new do |spec|
+  spec.add_dependency 'mail'
+
   spec.name          = "block_head"
   spec.version       = BlockHead::VERSION
   spec.authors       = ["Joe Letizia", "Noah Gordon", "Gust"]
