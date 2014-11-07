@@ -3,7 +3,7 @@ require File.join(File.dirname(__FILE__), '..', '..', 'lib', 'block_head', 'doma
 require 'spec_helper'
 
 describe DomainInterceptor do
-  subject(:interceptor) { DomainInterceptor.new([domain], default_recipient) }
+  subject(:interceptor) { DomainInterceptor }
   let(:default_recipient) { "default@gust.com" }
   let(:domain) { "gust.com" }
 
@@ -16,6 +16,10 @@ describe DomainInterceptor do
     end
 
     context "when the given email matches any of the domains given" do
+      before do
+        allow(ENV).to receive(:[]).with('VALID_EMAIL_DOMAINS') { "gust.com, gmail.com" }
+      end
+
       let(:destination_address) { "noah@gust.com" }
 
       it "does not manipulate the destination of the given email" do
@@ -25,6 +29,11 @@ describe DomainInterceptor do
     end
 
     context "when the given email does not match any of the domains given" do
+      before do
+        allow(ENV).to receive(:[]).with('VALID_EMAIL_DOMAINS') { "hotmail.com" }
+        allow(ENV).to receive(:[]).with('DEFAULT_EMAIL_RECIPIENT') { default_recipient }
+      end
+
       let(:destination_address) { "noah@gmail.com" }
 
       it "changes the destination of the given email to the default recipient" do
