@@ -1,6 +1,3 @@
-require 'block_head/version'
-require 'mail'
-
 class DomainInterceptor
   def initialize(domains, default_recipient)
     @domains, @default_recipient = domains, default_recipient
@@ -19,3 +16,4 @@ class DomainInterceptor
 
   attr_reader :domains, :default_recipient
 end
+

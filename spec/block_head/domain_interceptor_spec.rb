@@ -1,4 +1,4 @@
-require File.join(File.dirname(__FILE__), '..', '..', 'lib', 'domain_interceptor')
+require File.join(File.dirname(__FILE__), '..', '..', 'lib', 'block_head', 'domain_interceptor')
 
 require 'spec_helper'
 
