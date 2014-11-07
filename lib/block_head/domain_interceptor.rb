@@ -1,17 +1,22 @@
 class DomainInterceptor
   def initialize(domains, default_recipient)
-    @domains, @default_recipient = domains, default_recipient
+    @domains = domains
+    @default_recipient = default_recipient
   end
 
   def delivering_email(message)
-    message.to = default_recipient unless destination_has_valid_domain?(message)
+    unless destination_has_valid_domain?(message)
+      message.to = default_recipient
+    end
   end
 
   private
 
   def destination_has_valid_domain?(message)
-    domain = message.to.split("@")[1]
-    domains.include?(domain)
+    message.to.any? do |recipient|
+      recipient_domain = recipient.split("@")[1]
+      domains.include?(recipient_domain)
+    end
   end
 
   attr_reader :domains, :default_recipient

@@ -5,18 +5,18 @@ require 'spec_helper'
 describe DomainInterceptor do
   subject(:interceptor) { DomainInterceptor.new([domain], default_recipient) }
   let(:default_recipient) { "default@gust.com" }
-  let(:domain) { "gust.com" }
+  let(:domain) { "hotmail.com" }
 
   describe "#delivering_email" do
     let(:message) { double(:message) }
 
     before do
-      allow(message).to receive(:to) { destination_address }
+      allow(message).to receive(:to) { [destination_address] }
       allow(message).to receive(:to=)
     end
 
     context "when the given email matches any of the domains given" do
-      let(:destination_address) { "noah@gust.com" }
+      let(:destination_address) { "noah@hotmail.com" }
 
       it "does not manipulate the destination of the given email" do
         interceptor.delivering_email(message)

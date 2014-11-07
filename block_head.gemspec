@@ -11,8 +11,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Joe Letizia", "Noah Gordon", "Gust"]
   spec.email         = ["joe@gust.com", "noah@gust.com", "devs@gust.com"]
   spec.summary       = %q{BlockHead prevents you from being a blockhead. You can specify a set of domains that emails may be sent to from a Rails application.}
-  spec.description   = %q{BlockHead adds an interceptor that can be used to restrict emails sent from a Rails application to a specific domain.}
-  spec.homepage      = "gust.com"
+  spec.description   = %q{BlockHead provides an interceptor that can be used to restrict emails sent from a Rails application to a specific set of domains. Just set two environment variables -- the whitelisted domains and a bucket to collect redirected emails.}
+  spec.homepage      = "http://gust.com"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
